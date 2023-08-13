@@ -166,5 +166,16 @@ export default Button;
 
 ```
 
+```css
+// @tailwindcss/forms 🧾
+
+  plugins: [
+    require("@tailwindcss/forms")({
+      strategy: "class",
+    }),
+  ],
+
+```
+
 <p align="center"> Take Love From Me 💖</p>
 <p align="center"> sazzad karim</p>
