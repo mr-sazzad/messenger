@@ -6,7 +6,7 @@
 
 ```CSS
 
-//DIIDER ⚖️
+/* DIIDER ⚖️ */
 
 const Divider = () => {
   return (
@@ -28,7 +28,7 @@ export default Divider;
 
 ```CSS
 
-// INPUT COMPONENT ⚖️
+/* INPUT COMPONENT ⚖️ */
 
 "use client";
 
@@ -106,7 +106,7 @@ export default Input;
 ```
 
 ```CSS
-// BUTTON ⚖️
+/* BUTTON ⚖️ */
 
 "use client";
 import { clsx } from "clsx";
@@ -167,7 +167,7 @@ export default Button;
 ```
 
 ```css
-// @tailwindcss/forms 🧾
+/* @tailwindcss/forms 🧾 */
 
   plugins: [
     require("@tailwindcss/forms")({
