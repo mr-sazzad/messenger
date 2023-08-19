@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import ToasterContext from "./context/ToasterContext";
 import "./globals.css";
+
+import ToasterContext from "./context/ToasterContext";
+import AuthContext from "./context/authContext";
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -18,8 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ToasterContext />
-        {children}
+        <AuthContext>
+          <ToasterContext />
+          {children}
+        </AuthContext>
       </body>
     </html>
   );
