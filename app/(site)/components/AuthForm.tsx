@@ -4,8 +4,9 @@ import Button from "@/app/components/Button";
 import Divider from "@/app/components/Divider";
 import Input from "@/app/components/Inputs/Input";
 import axios from "axios";
-import { signIn } from "next-auth/react";
-import { useCallback, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { BsGithub, BsGoogle } from "react-icons/bs";
@@ -17,6 +18,15 @@ type Variant = "REGISTER" | "LOGIN";
 const AuthForm = () => {
   const [variant, setVariant] = useState<Variant>("LOGIN");
   const [isLoading, setIsLoading] = useState(false);
+
+  const session = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      router.push("/users");
+    }
+  }, [session, router]);
 
   const toggleVariant = useCallback(() => {
     if (variant === "LOGIN") {
@@ -44,7 +54,12 @@ const AuthForm = () => {
     if (variant === "REGISTER") {
       axios
         .post("/api/register", data)
-        .then(() => toast.success("user registered successfully !"))
+        .then(
+          () => (
+            toast.success("user registered successfully !"),
+            signIn("credentials", data)
+          )
+        )
         .catch(() => toast.error("Something went wrong !"))
         .finally(() => setIsLoading(false));
     }
@@ -56,11 +71,12 @@ const AuthForm = () => {
       })
         .then((callback) => {
           if (callback?.error) {
-            return toast.error("Invalid credentials !");
+            toast.error("Invalid credentials !");
           }
 
           if (callback?.ok && !callback?.error) {
-            return toast.success("Login successfully !");
+            toast.success("Login successfully !");
+            router.push("/users");
           }
         })
         .finally(() => {
