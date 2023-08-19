@@ -4,6 +4,8 @@
     "clsx",
     "deya",
     "googleusercontent",
+    "NEXTAUTH",
+    "prismadb",
     "superjson",
     "tailwindcss"
   ]
