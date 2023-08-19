@@ -1,34 +1,181 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">💭Messenger project </h1>
 
-## Getting Started
+<p align="center">🧩 Some awesome part of my this project</p>
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+
+```CSS
+
+/* DIIDER ⚖️ */
+
+const Divider = () => {
+  return (
+    <div className="mt-6">
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-300" />
+        </div>
+        <div className="relative flex justify-center text-sm">
+          <span className="px-2 bg-white text-gray-500">Or continue with</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Divider;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```CSS
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+/* INPUT COMPONENT ⚖️ */
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+"use client";
 
-## Learn More
+import clsx from "clsx";
+import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
-To learn more about Next.js, take a look at the following resources:
+interface InputProps {
+  label: string;
+  id: string;
+  type?: string;
+  required?: boolean;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
+  disabled?: boolean;
+}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+const Input: React.FC<InputProps> = ({
+  label,
+  id,
+  type,
+  required,
+  register,
+  errors,
+  disabled,
+}) => {
+  return (
+    <div>
+      <label
+        className="
+        block
+        text-sm
+        font-medium
+        leading-6
+        text-gray-900"
+        htmlFor={id}
+      >
+        {label}
+      </label>
+      <div className="mt-2">
+        <input
+          id={id}
+          type={type}
+          autoComplete={id}
+          disabled={disabled}
+          {...register(id, { required })}
+          className={clsx(
+            `
+                  form-input
+                  block
+                  w-full
+                  py-1.5
+                  rounded
+                  shadow-sm
+                  border-0
+                  ring-1
+                  ring-inset
+                  ring-gray-300
+                  placeholder: text-gray-400
+                  focus:ring-2
+                  focus:ring-inset
+                  focus:ring-sky-600
+                  sm:text-sm
+                  sm:leading-6`,
+            errors[id] && "focus:ring-rose-500",
+            disabled && "opacity-50 cursor-default"
+          )}
+        />
+      </div>
+    </div>
+  );
+};
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+export default Input;
 
-## Deploy on Vercel
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```CSS
+/* BUTTON ⚖️ */
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+"use client";
+import { clsx } from "clsx";
+
+interface ButtonProps {
+  type?: "submit" | "button" | "reset" | undefined;
+  children?: React.ReactNode;
+  fullWidth?: boolean;
+  onClick?: () => void;
+  secondary?: boolean;
+  danger?: boolean;
+  disabled?: boolean;
+}
+
+const Button: React.FC<ButtonProps> = ({
+  type,
+  children,
+  fullWidth,
+  onClick,
+  secondary,
+  danger,
+  disabled,
+}) => {
+  return (
+    <button
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+      className={clsx(
+        `
+    flex
+    justify-center
+    rounded-md
+    px-3
+    py-2
+    text-sm
+    font-semibold
+    focus-visible:outline
+    focus-visible:outline-2
+    focus-visible:outline-offset-2`,
+        disabled && "opacity-50 cursor-default",
+        secondary ? "text-gray-900" : "text-white",
+        fullWidth && "w-full",
+        danger &&
+          "bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600",
+        !secondary &&
+          !danger &&
+          "bg-sky-500 hover:bg-sky-600 focus-visible:outline-sky-600"
+      )}
+    >
+      {children}
+    </button>
+  );
+};
+
+export default Button;
+
+```
+
+```css
+/* @tailwindcss/forms 🧾 */
+
+  plugins: [
+    require("@tailwindcss/forms")({
+      strategy: "class",
+    }),
+  ],
+
+```
+
+<p align="center"> Take Love From Me 💖</p>
+<p align="center"> sazzad karim</p>
