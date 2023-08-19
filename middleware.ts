@@ -6,6 +6,7 @@ export default withAuth({
   },
 });
 
+//protected routes define
 export const config = {
-  matcher: ["/users/:path*"],
+  matcher: ["/users/:path*"], //wildcard matcher
 };
