@@ -5,7 +5,7 @@ const getCurrentUser = async () => {
   try {
     const session = await getSession();
 
-    if (session?.user?.email) {
+    if (!session?.user?.email) {
       return null;
     }
 
@@ -24,3 +24,5 @@ const getCurrentUser = async () => {
     return null;
   }
 };
+
+export default getCurrentUser;
