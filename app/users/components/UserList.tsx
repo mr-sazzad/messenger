@@ -14,6 +14,7 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
         fixed
         inset-y-0
         pb-20
+        lg:pb-0
         lg:left-20
         lg:w-80
         lg:block
@@ -23,6 +24,7 @@ const UserList: React.FC<UserListProps> = ({ items }) => {
         block
         w-full
         left-0
+        bg-white //
     "
     >
       <div className="px-5">
